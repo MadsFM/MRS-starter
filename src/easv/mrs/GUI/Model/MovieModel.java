@@ -30,4 +30,26 @@ public class MovieModel {
         moviesToBeViewed.clear();
         moviesToBeViewed.addAll(searchResults);
     }
+
+    public Movie createNewMovie(Movie newMovie) throws Exception {
+        Movie createdMovie = movieManager.createNewMovie(newMovie);
+        moviesToBeViewed.add(createdMovie);
+        return createdMovie;
+    }
+
+    public void deleteMovie(int id) throws Exception{
+        Movie moviesToDelete = null;
+        for (Movie movie : moviesToBeViewed) {
+            if (movie.getId() == id){
+                moviesToDelete = movie;
+                break;
+            }
+        }
+        if (moviesToDelete != null) {
+            moviesToBeViewed.remove(moviesToDelete);
+        } else {
+            throw new Exception("Movie with ID: " + id + "not found");
+        }
+    }
+
 }

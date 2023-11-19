@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="easv.mrs.GUI.Controller.MovieViewController">
+   <columnConstraints>
+      <ColumnConstraints />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" />
+      <RowConstraints />
+   </rowConstraints>
+   <children>
+      <ListView fx:id="lstMovies" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="4" />
+      <TextField fx:id="txtMovieSearch" />
+      <HBox prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="2">
+         <children>
+            <TextField fx:id="txtYear" alignment="CENTER" prefHeight="26.0" prefWidth="200.0" promptText="Release Year" />
+         </children>
+      </HBox>
+      <TextField fx:id="txtTitle" alignment="CENTER" promptText="Movie Title" GridPane.rowIndex="3" />
+      <HBox prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="1">
+         <children>
+            <Button fx:id="btnAdd" mnemonicParsing="false" onAction="#addMovie" text="Add" />
+            <Button fx:id="btnDelete" mnemonicParsing="false" onAction="#deleteID" prefHeight="26.0" prefWidth="54.0" text="Delete" />
+            <Button fx:id="btnUpdate" mnemonicParsing="false" onAction="#updateId" prefHeight="26.0" prefWidth="58.0" text="Update" />
+            <TextField fx:id="txtID" prefHeight="26.0" prefWidth="48.0" promptText="ID" />
+         </children>
+      </HBox>
+   </children>
+</GridPane>

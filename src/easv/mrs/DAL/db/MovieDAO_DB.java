@@ -19,7 +19,7 @@ public class MovieDAO_DB implements IMovieDataAccess {
         throw new UnsupportedOperationException();
     }
 
-    public Movie createMovie(String title, int year) throws Exception {
+    public Movie createMovie(Movie movie) throws Exception {
         //TODO Do this
         throw new UnsupportedOperationException();
     }

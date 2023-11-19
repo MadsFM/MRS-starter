@@ -2,6 +2,8 @@ package easv.mrs.GUI.Controller;
 
 import easv.mrs.BE.Movie;
 import easv.mrs.GUI.Model.MovieModel;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ListView;
@@ -15,6 +17,10 @@ public class MovieViewController implements Initializable {
 
     public TextField txtMovieSearch;
     public ListView<Movie> lstMovies;
+
+    @FXML
+    private TextField txtYear, txtTitle, txtID;
+
 
     private MovieModel movieModel;
 
@@ -42,7 +48,6 @@ public class MovieViewController implements Initializable {
                 e.printStackTrace();
             }
         });
-
     }
 
     private void displayError(Throwable t)
@@ -53,6 +58,32 @@ public class MovieViewController implements Initializable {
         alert.showAndWait();
     }
 
+    public Movie addMovie(ActionEvent actionEvent){
+        String title = txtTitle.getText();
+        int year = Integer.parseInt(txtYear.getText());
+        Movie newMovie = new Movie(-1, year, title);
 
+        try {
+            newMovie = movieModel.createNewMovie(newMovie);
 
+        } catch (Exception e){
+            displayError(e);
+            e.printStackTrace();
+        }
+        return newMovie;
+    }
+
+    public void deleteID(ActionEvent actionEvent) {
+        try {
+            int id = Integer.parseInt(txtID.getText());
+            movieModel.deleteMovie(id);
+        } catch (NumberFormatException e) {
+            displayError(new Exception("ID doesn't exist!"));
+        } catch (Exception e) {
+            displayError(e);
+        }
+    }
+
+    public void updateId(ActionEvent actionEvent) {
+    }
 }
