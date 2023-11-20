@@ -52,4 +52,29 @@ public class MovieModel {
         }
     }
 
+    public Movie findMovieId(int id) {
+        for (Movie movies : moviesToBeViewed) {
+            if (movies.getId() == id) {
+                return movies;
+            }
+        }
+        return null;
+    }
+
+    public void updateMovie(Movie updatedMovie) throws Exception {
+        movieManager.updateMovie(updatedMovie);
+
+        int movieID =  -1;
+        for (int i = 0; i < moviesToBeViewed.size(); i++) {
+            if (moviesToBeViewed.get(i).getId() == updatedMovie.getId()) {
+                movieID = i;
+                break;
+            }
+        }
+        if (movieID != -1) {
+            moviesToBeViewed.set(movieID, updatedMovie);
+        } else {
+            throw new Exception("Movie with this id: " + updatedMovie.getId() + "doesn't exist");
+        }
+    }
 }

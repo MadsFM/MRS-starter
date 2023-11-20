@@ -85,5 +85,30 @@ public class MovieViewController implements Initializable {
     }
 
     public void updateId(ActionEvent actionEvent) {
+        try {
+            int movie = Integer.parseInt(txtID.getText());
+            String newTitle = txtTitle.getText();
+            String newYear = txtYear.getText();
+
+            Movie updateThisMovie = movieModel.findMovieId(movie);
+
+            if (updateThisMovie != null){
+                if (!newTitle.isEmpty()){
+                    updateThisMovie.setTitle(newTitle);
+                }
+                if (!newYear.isEmpty()){
+                    int newRelease = Integer.parseInt(newYear);
+                    updateThisMovie.setYear(newRelease);
+                }
+                movieModel.updateMovie(updateThisMovie);
+            } else {
+                displayError(new Exception("Id: " + movie + " not found"));
+            }
+        } catch (NumberFormatException e){
+            displayError(new Exception("Not a valid number"));
+        } catch (Exception e){
+            displayError(e);
+        }
+
     }
 }
